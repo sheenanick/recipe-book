@@ -1,4 +1,4 @@
-//update  removeTag getIngredients
+//update  getIngredients
 import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,17 +69,12 @@ public class Recipe {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
+  public List<Ingredient> getIngredients(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM ingredients WHERE recipeid=:id";
+      return con.createQuery(sql).addParameter("id",this.id).executeAndFetch(Ingredient.class);
+    }
+  }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {

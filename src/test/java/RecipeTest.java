@@ -94,9 +94,18 @@ public class RecipeTest {
     testTag.save();
     Recipe newRecipe = new Recipe("pumpkin pie", "mix together and bake");
     newRecipe.save();
-    newRecipe.addTag(testTag); //we added this
+    newRecipe.addTag(testTag); 
     newRecipe.removeTag(testTag);
     List savedTags = newRecipe.getTags();
     assertEquals(0, savedTags.size());
+  }
+
+  @Test
+  public void getIngredients_RetrievesIngredientsInRecipe(){
+    Recipe newRecipe = new Recipe("pumpkin pie", "mix together and bake");
+    newRecipe.save();
+    Ingredient newIngredient = new Ingredient("pumpkin",newRecipe.getId());
+    newIngredient.save();
+    assertEquals(1, newRecipe.getIngredients().size());
   }
 }

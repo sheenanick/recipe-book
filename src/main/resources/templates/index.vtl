@@ -1,0 +1,28 @@
+<h1>Recipe Box</h1>
+
+<form class="form-group" action="/" method="post">
+  <label for="recipe">Enter a Recipe Name</label>
+  <input type="text" class="form-control" name="recipe" required>
+  <label for="instructions">Enter Directions</label>
+  <input type="text" class="form-control" name="instructions" required>
+  <button type="submit" class="btn btn-primary" name="button">Submit Recipe</button>
+</form>
+
+#foreach($recipe in $recipes)
+  <li><a href="/recipe/$recipe.getId()">$recipe.getName()</a></li>
+#end
+
+
+<h2>All Tags</h2>
+#foreach($tag in $tags)
+<div class="row">
+  <div class="col-xs-1">
+    <form action="/tag/$tag.getId()/delete-tag" method="post">
+      <button class="btn btn-danger" type="submit" name="button">X</button>
+    </form>
+  </div>
+  <div class="col-xs-10">
+    <li><a href="/tag/$tag.getId()">$tag.getName()</a></li>
+  </div>
+</div>
+#end

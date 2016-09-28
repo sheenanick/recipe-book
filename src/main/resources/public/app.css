@@ -1,0 +1,8 @@
+a, li{
+list-style: none;
+font-size: 30px;
+}
+
+button{
+  margin-top: 5px;
+}

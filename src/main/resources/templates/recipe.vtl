@@ -1,0 +1,49 @@
+<h1>$recipe.getName()</h1>
+
+<h5>$recipe.getInstructions()</h3>
+
+<form class="form-group" action="/recipe/$recipe.getId()" method="post">
+  <label for="ingredient">Add ingredients</label>
+  <input class="form-control" type="text" name="ingredient" required>
+  <button class="btn btn-primary" type="submit" name="button">Add ingredients</button>
+</form>
+
+
+#foreach($ingredient in $recipe.getIngredients())
+<div class="row">
+  <div class="col-xs-1">
+    <form  action="/recipe/$recipe.getId()/ingredient/$ingredient.getId()/deleted-ingredient" method="post">
+  <button type="submit" class="btn btn-danger" name="button">X</button>
+    </form>
+  </div>
+  <div class="col-xs-10">
+    <li>$ingredient.getName()</li>
+  </div>
+</div>
+
+#end
+
+<h4>Recipe Tags</h4>
+<form class="form-group" action="/recipe/$recipe.getId()/added-tag" method="post">
+  <label for="tag">Add tag</label>
+  <input type="text" class="form-control" name="tag" required>
+  <button type="submit" name="button" class="btn btn-primary">Add tag</button>
+</form>
+#foreach($tag in $recipe.getTags())
+<div class="row">
+  <div class="col-xs-1">
+    <form action="/recipe/$recipe.getId()/tag/$tag.getId()/remove-tag" method="post">
+      <button class="btn btn-danger" type="submit" name="button">X</button>
+    </form>
+  </div>
+  <div class="col-xs-10">
+    <a href="/tag/$tag.getId()">$tag.getName()</a>
+  </div>
+</div>
+
+#end
+<form  action="/recipe/$recipe.getId()/delete-recipe" method="post">
+    <button type="submit" class="btn btn-danger" name="button">Delete Recipe</button>
+</form>
+
+<a href="/">Go Home</a>

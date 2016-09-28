@@ -1,0 +1,18 @@
+<h1>All Recipes: $tag.getName()</h1>
+
+#foreach($recipe in $tag.getRecipes())
+<div class="row">
+  <div class="col-xs-1">
+    <form class="" action="/recipe/$recipe.getId()/tag/$tag.getId()/remove-recipe" method="post">
+      <button type="submit" name="button" class="btn btn-danger">X</button>
+    </form>
+  </div>
+  <div class="col-xs-10">
+    <li><a href="/recipe/$recipe.getId()">$recipe.getName()</a></li>
+  </div>
+</div>
+
+#end
+
+
+<a href="/">Back home</a>
